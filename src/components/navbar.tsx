@@ -1,4 +1,8 @@
+"use client";
+
+import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
+import { Link } from "@nextui-org/link";
 import {
   NavbarBrand,
   NavbarContent,
@@ -11,11 +15,11 @@ import {
 import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import NextLink from "next/link";
+import { useRouter } from "next/navigation";
 
-import { GithubIcon, Logo, SearchIcon } from "@/src/components/icons";
-import { ThemeSwitch } from "@/src/components/theme-switch";
 import { siteConfig } from "@/src/config/site";
-import Link from "next/link";
+import { ThemeSwitch } from "@/src/components/theme-switch";
+import { GithubIcon, Logo, SearchIcon } from "@/src/components/icons";
 
 export const Navbar = () => {
   const searchInput = (
@@ -34,6 +38,8 @@ export const Navbar = () => {
     />
   );
 
+  const router = useRouter();
+
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -49,7 +55,7 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
                 )}
                 color="foreground"
                 href={item.href}
@@ -70,9 +76,7 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
-          <NextLink href="/login" className="bg-slate-900 px-4 py-2 rounded-lg">
-            Login
-          </NextLink>
+          <Button onClick={() => router.push("/signin")}>Sign In</Button>
         </NavbarItem>
       </NavbarContent>
 
@@ -94,8 +98,8 @@ export const Navbar = () => {
                   index === 2
                     ? "primary"
                     : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
+                      ? "danger"
+                      : "foreground"
                 }
                 href="#"
                 size="lg"

@@ -37,7 +37,7 @@ export default function GSForm({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={submitHandler(onSubmit)} className={className}>
+      <form className={className} onSubmit={submitHandler(onSubmit)}>
         {children}
       </form>
     </FormProvider>

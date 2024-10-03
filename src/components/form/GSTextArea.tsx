@@ -24,8 +24,8 @@ export default function GSTextarea({
       {...register(name)}
       label={label}
       minRows={6}
-      variant={variant}
       value={currentValue || ""}
+      variant={variant}
     />
   );
 }

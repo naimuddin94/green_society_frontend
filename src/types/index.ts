@@ -12,4 +12,33 @@ export interface IInput {
   label: string;
   name: string;
   disabled?: boolean;
+  placeholder?: string;
+}
+
+export interface IResponse<T> {
+  statusCode: number;
+  data: T;
+  message: string;
+  success: boolean;
+}
+
+export interface ISigninData extends IUser {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface IUser {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  address?: string;
+  phone?: string;
+  image?: string;
+  followers?: any[];
+  following?: any[];
+  block?: string[];
+  blockedBy?: any[];
+  verified?: boolean;
+  premium?: boolean;
 }
