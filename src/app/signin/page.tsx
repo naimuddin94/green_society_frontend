@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import SigninForm from "./_components/SigninForm";
 
-export default function LoginPage() {
+export default function SigninPage() {
   return (
     <div className="flex items-center min-h-screen justify-center  bg-gradient-to-br from-green-800 to-teal-700">
       <Card className="w-full max-w-md p-5">

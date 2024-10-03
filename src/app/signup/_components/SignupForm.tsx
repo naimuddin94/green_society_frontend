@@ -5,13 +5,10 @@ import { FieldValues } from "react-hook-form";
 
 import GSForm from "@/src/components/form/GSForm";
 import GSInput from "@/src/components/form/GSInput";
-import nexiosInstance from "@/src/config/NaxioInstance";
 
 const SignupForm = () => {
   const handleLogin = async (data: FieldValues) => {
-    const res = await nexiosInstance.post("/auth/signup", data);
-
-    console.log({ res, data });
+    console.log(data);
   };
 
   return (
