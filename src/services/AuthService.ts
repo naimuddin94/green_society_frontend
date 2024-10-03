@@ -6,6 +6,21 @@ import { FieldValues } from "react-hook-form";
 
 import axiosInstance from "../lib/axiosInstance";
 
+export const signupUser = async (userData: FieldValues) => {
+  try {
+    const { data } = await axiosInstance.post("/auth/signup", userData);
+
+    if (data?.success) {
+      cookies().set("accessToken", data?.data?.accessToken);
+      cookies().set("refreshToken", data?.data?.refreshToken);
+    }
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
 export const signinUser = async (userData: FieldValues) => {
   try {
     const { data } = await axiosInstance.post("/auth/signin", userData);

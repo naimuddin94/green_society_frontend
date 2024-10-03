@@ -8,13 +8,14 @@ import { IInput } from "@/src/types";
 interface IProps extends IInput {}
 
 export default function GSInput({
-  variant = "flat",
+  variant = "bordered",
   size = "md",
   required = false,
   type = "text",
   label,
   name,
   placeholder,
+  endContent,
 }: IProps) {
   const {
     register,
@@ -28,10 +29,11 @@ export default function GSInput({
       isInvalid={!!errors[name]}
       label={label}
       placeholder={placeholder}
-      required={required}
+      isRequired={required}
       size={size}
       type={type}
       variant={variant}
+      endContent={endContent}
     />
   );
 }
