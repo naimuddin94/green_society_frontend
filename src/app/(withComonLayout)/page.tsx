@@ -1,11 +1,8 @@
-import { Code } from "@nextui-org/code";
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { button as buttonStyles } from "@nextui-org/theme";
-
 import { GithubIcon } from "@/src/components/icons";
 import { subtitle, title } from "@/src/components/primitives";
 import { siteConfig } from "@/src/config/site";
+import { Link } from "@nextui-org/link";
+import { button as buttonStyles } from "@nextui-org/theme";
 
 export default async function Home() {
   return (
@@ -42,14 +39,6 @@ export default async function Home() {
           <GithubIcon size={20} />
           GitHub
         </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
       </div>
     </section>
   );
