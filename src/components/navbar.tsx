@@ -16,7 +16,6 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import NextLink from "next/link";
 import { useRouter } from "next/navigation";
-
 import { siteConfig } from "@/src/config/site";
 import { ThemeSwitch } from "@/src/components/theme-switch";
 import { GithubIcon, Logo, SearchIcon } from "@/src/components/icons";
