@@ -43,3 +43,37 @@ export interface IUser {
   verified?: boolean;
   premium?: boolean;
 }
+
+export interface ILayoutProps {
+  children: ReactNode;
+}
+
+interface IPostUser {
+  _id: string;
+  name: string;
+  image?: string;
+}
+
+interface IPostComment {
+  _id: string;
+  author: IPostUser;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IPost {
+  _id: string;
+  title: string;
+  content: string;
+  author: IPostUser;
+  images: string[];
+  category: string;
+  premium: boolean;
+  like: IPostUser[];
+  dislike: IPostUser[];
+  comments: IPostComment[];
+  createdAt: string;
+  updatedAt: string;
+  upvotes: number;
+}
