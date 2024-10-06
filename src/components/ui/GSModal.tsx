@@ -1,3 +1,4 @@
+import { useUser } from "@/src/context/user.provider";
 import { Button } from "@nextui-org/button";
 import {
   Modal,
@@ -6,8 +7,8 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
-import { LucideProps } from "lucide-react";
-import { ForwardRefExoticComponent, ReactNode, RefAttributes } from "react";
+import { useRouter } from "next/navigation";
+import { ReactNode } from "react";
 
 interface IProps {
   buttonText: string;
@@ -35,13 +36,22 @@ export default function GSModal({
   buttonIcon,
 }: IProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { user } = useUser();
+  const router = useRouter();
 
+  const handleModal = () => {
+    if (!user?.email) {
+      router.push(`/signin?redirect=post`);
+    } else {
+      onOpen();
+    }
+  };
   return (
     <>
       <Button
         className={buttonClassName}
         variant={buttonVariant}
-        onPress={onOpen}
+        onPress={handleModal}
         startContent={buttonIcon}
       >
         {buttonText}

@@ -16,7 +16,6 @@ import { FieldValues } from "react-hook-form";
 
 const AddPost = () => {
   const [images, setImages] = useState<File[] | null>(null);
-
   const { mutate: addPostFn, isPending, isSuccess } = useAddPost();
 
   const handleAddPost = (data: FieldValues) => {
