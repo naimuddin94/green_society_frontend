@@ -41,16 +41,17 @@ const PostCard = ({ post }: IPostCardProps) => {
         <Avatar
           src={post.author?.image}
           alt={post.author.name}
-          style={{ marginRight: "10px" }}
+          className="mr-3"
         />
         <div>
           <strong>{post.author.name}</strong>
-          <p>23:50 am</p>
+          <p className="opacity-60">{moment(post.createdAt).format("L LT")}</p>
         </div>
       </CardHeader>
 
       <CardBody>
-        <p>{post.content}</p>
+        <h2 className="text-lg font-semibold mb-4">{post.title}</h2>
+        <p className="opacity-80">{post.content}</p>
       </CardBody>
 
       <div className="flex flex-col justify-start text-start">

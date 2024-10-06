@@ -7,8 +7,8 @@ export const useUserSignup = () => {
   return useMutation<any, Error, FieldValues>({
     mutationKey: ["USER_SIGNUP"],
     mutationFn: async (userData) => await signupUser(userData),
-    onSuccess: () => {
-      toast.success("Account created successfully");
+    onSuccess: (data) => {
+      toast.success(data?.message);
     },
     onError: (error) => {
       toast.error(error.message);
@@ -26,6 +26,5 @@ export const useUserSignin = () => {
     onError: (error) => {
       toast.error(error.message);
     },
-
   });
 };
