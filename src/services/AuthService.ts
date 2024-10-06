@@ -1,6 +1,6 @@
 "use server";
 
-import jwt, { JwtPayload } from "jsonwebtoken";
+import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form";
 
@@ -36,16 +36,18 @@ export const signinUser = async (userData: FieldValues) => {
   }
 };
 
+export const signout = () => {
+  cookies().delete("accessToken");
+  cookies().delete("refreshToken");
+};
+
 export const getCurrentUser = async () => {
   const accessToken = cookies().get("accessToken")?.value;
 
   let decodedToken = null;
 
   if (accessToken) {
-    decodedToken = jwt.verify(
-      accessToken,
-      process.env.JWT_ACCESS_SECRET!
-    ) as JwtPayload;
+    decodedToken = await jwtDecode(accessToken);
 
     return {
       _id: decodedToken.id,

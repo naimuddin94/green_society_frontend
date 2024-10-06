@@ -5,7 +5,7 @@ const layout = ({ children }: ILayoutProps) => {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="ml-64">{children}</div>
+      <div className="md:ml-64">{children}</div>
     </div>
   );
 };

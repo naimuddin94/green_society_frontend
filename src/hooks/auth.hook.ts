@@ -20,11 +20,12 @@ export const useUserSignin = () => {
   return useMutation<any, Error, FieldValues>({
     mutationKey: ["USER_SIGNIN"],
     mutationFn: async (userData) => await signinUser(userData),
-    onSuccess: () => {
-      toast.success("Successfully signed in");
+    onSuccess: (data) => {
+      toast.success(data?.message);
     },
     onError: (error) => {
       toast.error(error.message);
     },
+
   });
 };
