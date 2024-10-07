@@ -1,10 +1,22 @@
-import axiosInstance from "@/src/lib/axiosInstance";
+import { envConfig } from "@/src/config/envConfig";
 import { IPost } from "@/src/types";
 import AddPost from "./_components/AddPost";
 import PostCard from "./_components/PostCard";
 
 const PostPage = async () => {
-  const { data } = await axiosInstance.get("/posts");
+  // const { data } = await axiosInstance.get("/posts");
+
+  const res = await fetch(`${envConfig.api_host}/posts`, {
+    next: {
+      tags: ["posts"],
+    },
+  });
+
+  if (!res.ok) {
+    return <div>Failed to load posts</div>;
+  }
+
+  const data = await res.json();
 
   return (
     <div className="container px-5">

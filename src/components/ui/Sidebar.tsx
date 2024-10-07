@@ -29,7 +29,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="min-w-64 bg-green-900 text-white md:flex flex-col hidden fixed h-full w-64">
+    <div className="min-w-64 dark:bg-green-950 bg-slate-200 dark:text-white md:flex flex-col hidden fixed h-full w-64">
       <nav className="flex-grow">
         <ul className="mt-6">
           {menuItems.map((item) => (
