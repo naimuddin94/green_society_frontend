@@ -1,11 +1,10 @@
 "use client";
 
-import { GithubIcon, Logo, SearchIcon } from "@/src/components/icons";
+import { Logo, SearchIcon } from "@/src/components/icons";
 import { ThemeSwitch } from "@/src/components/theme-switch";
 import { siteConfig } from "@/src/config/site";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
-import { Link } from "@nextui-org/link";
 import {
   NavbarBrand,
   NavbarContent,
@@ -17,13 +16,12 @@ import {
 } from "@nextui-org/navbar";
 import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
-import NextLink from "next/link";
-import { useRouter } from "next/navigation";
+import { default as Link, default as NextLink } from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "../context/user.provider";
 import NavbarDropdown from "./NavbarDropdown";
 
 export const Navbar = () => {
-  
   const searchInput = (
     <Input
       aria-label="Search"
@@ -40,6 +38,7 @@ export const Navbar = () => {
     />
   );
 
+  const pathname = usePathname();
   const router = useRouter();
 
   const { user } = useUser();
@@ -91,9 +90,6 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-          <GithubIcon className="text-default-500" />
-        </Link>
         <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>
@@ -104,15 +100,8 @@ export const Navbar = () => {
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                href="#"
-                size="lg"
+                className={`${pathname === item.href && "text-primary"}`}
+                href={item.href}
               >
                 {item.label}
               </Link>

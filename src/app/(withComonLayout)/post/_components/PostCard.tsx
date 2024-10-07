@@ -158,7 +158,7 @@ const PostCard = ({ post }: IPostCardProps) => {
                       )}
                     </div>
                     <p className="text-sm text-gray-600">
-                      {moment(comment.updatedAt).startOf("hour").fromNow()}
+                      {moment(comment.updatedAt).fromNow()}
                     </p>
                     <p>{comment.content}</p>
                   </div>

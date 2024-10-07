@@ -1,7 +1,7 @@
 "use client";
 
 import { Book, Cog, House, LucideProps, UserRound } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ForwardRefExoticComponent, RefAttributes, useState } from "react";
 
 interface IItem {
@@ -14,6 +14,7 @@ interface IItem {
 
 const Sidebar = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const [activeMenu, setActiveMenu] = useState("home");
 
   const menuItems = [
@@ -29,14 +30,16 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="min-w-64 dark:bg-green-950 bg-slate-200 dark:text-white md:flex flex-col hidden fixed h-full w-64">
+    <div className="min-w-64 dark:bg-gradient-to-br dark:from-green-950 dark:to-teal-800 bg-slate-200 dark:text-white md:flex flex-col hidden fixed h-full w-64">
       <nav className="flex-grow">
         <ul className="mt-6">
           {menuItems.map((item) => (
             <li
               key={item.name}
-              className={`flex items-center px-4 py-3 hover:bg-green-700 cursor-pointer ${
-                activeMenu === item.name.toLowerCase() ? "bg-green-800" : ""
+              className={`flex items-center px-4 py-3 dark:hover:bg-gradient-to-r dark:hover:from-green-950 dark:hover:to-teal-800 hover:bg-slate-300 cursor-pointer ${
+                pathname === item.route
+                  ? "dark:bg-gradient-to-r dark:from-green-900 dark:to-teal-700 bg-slate-300 dark:text-white"
+                  : ""
               }`}
               onClick={() => handleClick(item)}
             >
