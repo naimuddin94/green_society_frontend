@@ -25,6 +25,8 @@ const QuillEditor = ({
             ["bold", "italic", "underline"],
             ["link", "blockquote", "code-block"],
             [{ list: "ordered" }, { list: "bullet" }],
+            ["image"], // Add image button
+            ["clean"],
           ],
         },
       });
@@ -52,10 +54,7 @@ const QuillEditor = ({
   }, [value]);
 
   return (
-    <div
-      ref={editorRef}
-      style={{ height: "300px", borderRadius: "15px", }}
-    />
+    <div ref={editorRef} style={{ height: "300px", borderRadius: "15px" }} />
   );
 };
 

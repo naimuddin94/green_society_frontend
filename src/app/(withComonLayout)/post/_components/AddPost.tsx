@@ -59,8 +59,8 @@ const AddPost = () => {
           Add Post
         </Button>
         <GSModal
-          isOpen={isOpen} // Pass modal state
-          onOpenChange={onOpenChange} // Pass modal state control
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
           title="Add new post"
         >
           <GSForm onSubmit={handleAddPost} className="space-y-4">

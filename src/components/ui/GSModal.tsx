@@ -21,8 +21,9 @@ export default function GSModal({
       size="xl"
       onOpenChange={onOpenChange}
       className="py-5"
+      backdrop="blur"
     >
-      <ModalContent>
+      <ModalContent className="max-h-[100vh] overflow-y-auto scrollbar-hide">
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>

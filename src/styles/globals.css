@@ -15,3 +15,32 @@ h2 {
 p {
   opacity: 0.8;
 }
+
+.ql-editor.ql-blank::before {
+  @apply text-white italic; 
+}
+
+.dark .ql-editor.ql-blank::before {
+  @apply text-gray-400;
+}
+
+/* styles.css */
+.ql-toolbar {
+  @apply border-none bg-white rounded-lg shadow-md p-2;
+}
+
+.ql-toolbar .ql-formats {
+  @apply m-0;
+}
+
+.ql-toolbar button {
+  @apply border-none bg-transparent text-gray-500 py-2 px-3 transition-all duration-300;
+}
+
+.ql-toolbar button:hover {
+    @apply bg-slate-100 text-black;
+}
+
+.ql-toolbar button.ql-active {
+    @apply bg-slate-200 text-black;
+}
