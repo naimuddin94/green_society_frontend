@@ -1,6 +1,6 @@
 "use client";
 
-import { Book, Cog, House, LucideProps, UserRound } from "lucide-react";
+import { Book, Cog, House, LucideProps, NotebookPen, UserRound } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { ForwardRefExoticComponent, RefAttributes, useState } from "react";
 
@@ -19,6 +19,7 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "All", icon: House, route: "/post" },
+    { name: "Add Post", icon: NotebookPen, route: "/post/add-post" },
     { name: "Gardening Tips", icon: Book, route: "/post/tips" },
     { name: "Community", icon: UserRound, route: "/post/community" },
     { name: "Settings", icon: Cog, route: "/settings" },

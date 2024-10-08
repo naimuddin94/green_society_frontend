@@ -95,8 +95,8 @@ const PostCard = ({ post }: IPostCardProps) => {
       </CardHeader>
 
       <CardBody>
-        <h2 className="text-lg font-semibold mb-4">{post.title}</h2>
-        <p className="opacity-80">{post.content}</p>
+        {/* <h2 className="text-lg font-semibold mb-4">{post.title}</h2> */}
+        <div dangerouslySetInnerHTML={{ __html: post.content }} />
         <div>
           <ImageGallery images={post.images} />
         </div>
