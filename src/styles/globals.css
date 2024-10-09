@@ -16,8 +16,12 @@ p {
   opacity: 0.8;
 }
 
+a {
+  @apply text-blue-500 underline;
+}
+
 .ql-editor.ql-blank::before {
-  @apply text-white italic; 
+  @apply text-white italic;
 }
 
 .dark .ql-editor.ql-blank::before {
@@ -38,9 +42,9 @@ p {
 }
 
 .ql-toolbar button:hover {
-    @apply bg-slate-100 text-black;
+  @apply bg-slate-100 text-black;
 }
 
 .ql-toolbar button.ql-active {
-    @apply bg-slate-200 text-black;
+  @apply bg-slate-200 text-black;
 }

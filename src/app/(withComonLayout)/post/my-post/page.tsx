@@ -1,12 +1,15 @@
 import { envConfig } from "@/src/config/envConfig";
 import { getCurrentUser } from "@/src/services/AuthService";
 import { IPost } from "@/src/types";
+import { redirect } from "next/navigation";
 import PostCard from "../_components/PostCard";
 
 const MyPostPage = async () => {
   const user = await getCurrentUser();
 
-  console.log(user);
+  if (!user) {
+    return redirect("/signin?redirect=post/my-post");
+  }
 
   const res = await fetch(`${envConfig.api_host}/posts?author=${user?._id}`, {
     next: {

@@ -47,15 +47,6 @@ const PostCard = ({ post }: IPostCardProps) => {
   const { mutate: deleteComment } = useDeleteComment();
   const contentRef = useRef(null);
 
-  const handleDelete = () => {
-    return toast.custom((t) => (
-      <div>
-        This is a custom component
-        <button onClick={() => toast.dismiss(t)}>close</button>
-      </div>
-    ));
-  };
-
   // Generate PDF file
   const handleGeneratePDF = async () => {
     const contentEl = contentRef.current;

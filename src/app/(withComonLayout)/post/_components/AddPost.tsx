@@ -64,7 +64,7 @@ const AddPost = () => {
           title="Add new post"
         >
           <GSForm onSubmit={handleAddPost} className="space-y-4">
-            <div className="md:flex items-center gap-2 space-y-3">
+            <div className="md:flex items-center justify-center gap-2 md:space-y-[2px] space-y-3">
               <div className="flex-1">
                 <GSFileInput
                   onChange={handleImageChange}
@@ -72,7 +72,7 @@ const AddPost = () => {
                   multiple
                 />
               </div>
-              <div className="flex-1">
+              <div className="flex-1 -mt-4">
                 <GSSelect
                   label="Category"
                   name="category"
