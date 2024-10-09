@@ -64,22 +64,29 @@ const AddPost = () => {
           title="Add new post"
         >
           <GSForm onSubmit={handleAddPost} className="space-y-4">
-            <GSFileInput
-              onChange={handleImageChange}
-              value={images && `${images.length} images selected`}
-              multiple
-            />
+            <div className="md:flex items-center gap-2 space-y-3">
+              <div className="flex-1">
+                <GSFileInput
+                  onChange={handleImageChange}
+                  value={images && `${images.length} images selected`}
+                  multiple
+                />
+              </div>
+              <div className="flex-1">
+                <GSSelect
+                  label="Category"
+                  name="category"
+                  options={postCategory.map((item) => ({
+                    key: item,
+                    label: item,
+                  }))}
+                />
+              </div>
+            </div>
             <QuillEditor value={content} onChange={setContent} />
-            <GSSelect
-              label="Category"
-              name="category"
-              options={postCategory.map((item) => ({
-                key: item,
-                label: item,
-              }))}
-            />
+
             <div className="flex justify-end">
-              <Button type="submit" onPress={onClose}>
+              <Button size="lg" type="submit" onPress={onClose}>
                 Save
               </Button>
             </div>

@@ -17,6 +17,19 @@ export const addPost = async (postData: FieldValues) => {
   }
 };
 
+export const deletePost = async (postId: string) => {
+  try {
+    const { data } = await axiosInstance.delete(`/posts/${postId}`);
+    if (data?.success) {
+      revalidateTag(`post-${postId}`);
+    }
+    return data;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
 export const addComment = async (postId: string, content: string) => {
   try {
     const { data } = await axiosInstance.post(`/comments/${postId}`, {

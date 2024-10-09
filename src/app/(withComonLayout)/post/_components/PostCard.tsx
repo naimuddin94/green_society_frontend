@@ -1,5 +1,6 @@
 "use client";
 
+import DeleteModal from "@/src/components/ui/DeleteModal";
 import ImageGallery from "@/src/components/ui/ImageGallery";
 import { useUser } from "@/src/context/user.provider";
 import {
@@ -13,10 +14,20 @@ import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
 import { motion } from "framer-motion";
-import { Trash2 } from "lucide-react";
+import html2pdf from "html2pdf.js";
+import {
+  FileText,
+  ListCollapse,
+  MessageSquareText,
+  Share2,
+  ThumbsDown,
+  ThumbsUp,
+  Trash2,
+} from "lucide-react";
 import moment from "moment";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { toast } from "sonner";
 
 interface IPostCardProps {
   post: IPost;
@@ -34,7 +45,42 @@ const PostCard = ({ post }: IPostCardProps) => {
   const { mutate: addReaction } = usePostReaction();
   const { mutate: addComment } = useAddComment();
   const { mutate: deleteComment } = useDeleteComment();
+  const contentRef = useRef(null);
 
+  const handleDelete = () => {
+    return toast.custom((t) => (
+      <div>
+        This is a custom component
+        <button onClick={() => toast.dismiss(t)}>close</button>
+      </div>
+    ));
+  };
+
+  // Generate PDF file
+  const handleGeneratePDF = async () => {
+    const contentEl = contentRef.current;
+
+    if (contentEl) {
+      const options = {
+        margin: 1,
+        filename: `${post.author.name + "'s_post"}.pdf`,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      };
+
+      html2pdf().from(contentEl).set(options).save();
+    }
+  };
+
+  // Copy post link to clipboard
+  const handleShare = () => {
+    const postUrl = `${window.location.origin}/post/${post._id}`;
+    navigator.clipboard.writeText(postUrl);
+    toast.success("Post link copied successfully!");
+  };
+
+  // Handle post reaction
   const handleReaction = async (reaction: "like" | "dislike") => {
     if (!user) {
       return router.push("/signin?redirect=post");
@@ -66,6 +112,7 @@ const PostCard = ({ post }: IPostCardProps) => {
     }
   };
 
+  // Handle add comment
   const handleAddComment = () => {
     if (!user) {
       return router.push("/signin?redirect=post");
@@ -76,21 +123,32 @@ const PostCard = ({ post }: IPostCardProps) => {
     }
   };
 
+  // Handle delete comment
   const handleCommentDelete = (id: string) => {
     deleteComment({ commentId: id, postId: post._id });
   };
 
   return (
-    <Card className="min-w-lg my-5 mx-auto p-5">
-      <CardHeader>
-        <Avatar
-          src={post.author?.image}
-          alt={post.author.name}
-          className="mr-3"
-        />
-        <div>
-          <strong>{post.author.name}</strong>
-          <p className="opacity-60">{moment(post.createdAt).format("L LT")}</p>
+    <Card className="min-w-lg my-5 mx-auto p-5" ref={contentRef}>
+      <CardHeader className="flex justify-between items-start">
+        <div className="flex items-center gap-2">
+          <Avatar
+            src={post.author?.image}
+            alt={post.author.name}
+            className="mr-3"
+          />
+          <div>
+            <strong>{post.author.name}</strong>
+            <p className="opacity-60">
+              {moment(post.createdAt).format("L LT")}
+            </p>
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <Button isIconOnly onClick={handleGeneratePDF}>
+            <FileText className="hover:text-lime-500" />
+          </Button>
+          {post.author._id === user?._id && <DeleteModal postId={post._id} />}
         </div>
       </CardHeader>
 
@@ -101,17 +159,59 @@ const PostCard = ({ post }: IPostCardProps) => {
           <ImageGallery images={post.images} />
         </div>
       </CardBody>
-      <div className="flex flex-col justify-start text-start">
-        <div className="flex gap-2">
-          <Button onClick={() => handleReaction("like")}>
-            👍 Like ({likes.length})
-          </Button>
-          <Button onClick={() => handleReaction("dislike")}>
-            👎 Dislike ({dislikes.length})
-          </Button>
-          <Button onClick={() => setShowComments(!showComments)}>
-            💬 Comment ({post.comments.length})
-          </Button>
+      <div className="flex flex-col justify-start text-start px-3">
+        <div className="sm:flex justify-between space-y-2">
+          <div className="flex gap-2">
+            <Button
+              className={
+                likes.find((item) => item._id === user?._id) && "bg-lime-100/10"
+              }
+              onClick={() => handleReaction("like")}
+              startContent={<ThumbsUp size={18} />}
+              endContent={
+                <p className="dark:text-lime-500 text-base">{likes.length}</p>
+              }
+            >
+              Like
+            </Button>
+            <Button
+              className={
+                dislikes.find((item) => item._id === user?._id) &&
+                "bg-lime-100/5"
+              }
+              onClick={() => handleReaction("dislike")}
+              startContent={<ThumbsDown size={18} />}
+              endContent={
+                <p className="dark:text-lime-500 text-base">
+                  {dislikes.length}
+                </p>
+              }
+            >
+              Dislike
+            </Button>
+            <Button
+              onClick={() => setShowComments(!showComments)}
+              startContent={<MessageSquareText size={18} />}
+              endContent={
+                <p className="dark:text-lime-500 text-base">
+                  {post.comments.length}
+                </p>
+              }
+            >
+              Comment
+            </Button>
+          </div>
+          <div className="flex gap-2">
+            <Button onClick={handleShare} startContent={<Share2 size={18} />}>
+              Share
+            </Button>
+            <Button
+              onClick={() => router.push(`/post/${post._id}`)}
+              startContent={<ListCollapse size={18} />}
+            >
+              Details
+            </Button>
+          </div>
         </div>
 
         {/* Comment Section with Smooth Transition */}

@@ -1,8 +1,8 @@
 "use client";
 
-import { Book, Cog, House, LucideProps, NotebookPen, UserRound } from "lucide-react";
+import { Book, Cog, House, LucideProps, NotebookTabs, UserRound } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { ForwardRefExoticComponent, RefAttributes, useState } from "react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 interface IItem {
   name: string;
@@ -15,18 +15,16 @@ interface IItem {
 const Sidebar = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const [activeMenu, setActiveMenu] = useState("home");
 
   const menuItems = [
     { name: "All", icon: House, route: "/post" },
-    { name: "Add Post", icon: NotebookPen, route: "/post/add-post" },
     { name: "Gardening Tips", icon: Book, route: "/post/tips" },
     { name: "Community", icon: UserRound, route: "/post/community" },
+    { name: "My Post", icon: NotebookTabs, route: "/post/my-post" },
     { name: "Settings", icon: Cog, route: "/settings" },
   ];
 
   const handleClick = (item: IItem) => {
-    setActiveMenu(item.name.toLowerCase());
     router.push(item.route);
   };
 

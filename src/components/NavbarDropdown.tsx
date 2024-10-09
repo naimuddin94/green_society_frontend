@@ -42,9 +42,6 @@ export default function NavbarDropdown() {
         <DropdownItem onClick={() => handleNavigation("/profile/settings")}>
           Settings
         </DropdownItem>
-        <DropdownItem onClick={() => handleNavigation("/profile/create-post")}>
-          Create Post
-        </DropdownItem>
         <DropdownItem
           key="delete"
           className="text-danger"

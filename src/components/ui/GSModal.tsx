@@ -1,5 +1,4 @@
 import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
 import { ReactNode } from "react";
 
 interface IProps {
@@ -18,7 +17,7 @@ export default function GSModal({
   return (
     <Modal
       isOpen={isOpen}
-      size="xl"
+      size="3xl"
       onOpenChange={onOpenChange}
       className="py-5"
       backdrop="blur"
