@@ -1,7 +1,5 @@
 "use client";
 
-import { Logo, SearchIcon } from "@/src/components/icons";
-import { ThemeSwitch } from "@/src/components/theme-switch";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import {
@@ -17,9 +15,13 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import { default as Link, default as NextLink } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+
 import { siteConfig } from "../config/site";
 import { useUser } from "../context/user.provider";
+
 import NavbarDropdown from "./NavbarDropdown";
+
+import { Logo, SearchIcon } from "@/src/components/icons";
 
 export const Navbar = () => {
   const searchInput = (
@@ -78,9 +80,6 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-        <NavbarItem>
-          <ThemeSwitch />
-        </NavbarItem>
         {user?.email ? (
           <NavbarItem className="hidden md:flex">
             <NavbarDropdown />
@@ -93,7 +92,6 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>
 

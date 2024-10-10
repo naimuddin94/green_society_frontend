@@ -26,7 +26,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   };
 
   const {
-    Component: NextUIComponent,
+    Component,
     slots,
     isSelected,
     getBaseProps,
@@ -41,7 +41,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   });
 
   return (
-    <NextUIComponent
+    <Component
       {...getBaseProps({
         className: clsx(
           "px-px transition-opacity hover:opacity-80 cursor-pointer",
@@ -78,6 +78,6 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
           <MoonFilledIcon size={22} />
         )}
       </div>
-    </NextUIComponent>
+    </Component>
   );
 };

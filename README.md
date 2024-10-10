@@ -1,53 +1,63 @@
-# Next.js & NextUI Template
 
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
+🌿 Green Society - Gardening Tips & Advice Platform
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
+Welcome to the Green Society frontend project! This platform is designed to connect gardening enthusiasts and professionals, offering a space to share knowledge, interact, and access premium content. The Green Society frontend is developed using Next.js and NextUI, providing a modern, responsive, and user-friendly experience.
 
-## Technologies Used
+🚀 Features
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+- User Authentication: Secure login and registration system for users to access premium content and features.
 
-## How to Use
+- Premium Content Access: Premium users can unlock exclusive gardening tips and advice from experts.
+- Social Interaction: Users can upvote, comment on posts, and follow others to stay engaged with the community. 
 
-### Use the template with create-next-app
+- Mobile-Friendly Design: The platform is optimized for all devices, ensuring a seamless experience across smartphones, tablets, and desktops.
 
-To create a new project based on this template using `create-next-app`, run the following command:
+- Real-Time Updates: Stay updated with real-time notifications for new posts, comments, and premium content releases.
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
 
-### Install dependencies
+## Project Link
+[![Live Link](https://img.shields.io/badge/API-Live-brightgreen?style=for-the-badge)](https://meeting-room-client-lemon.vercel.app/)
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+## Run Locally
+
+Clone the project
 
 ```bash
-npm install
+  git clone https://github.com/naimuddin94/meeting-room-client.git
 ```
 
-### Run the development server
+Go to the project directory
 
 ```bash
-npm run dev
+  cd meeting-room-client
 ```
 
-### Setup pnpm (optional)
+Set environment variables fllowing env.exaple file
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+Install dependencies
 
 ```bash
-public-hoist-pattern[]=*@nextui-org/*
+  npm install
 ```
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+Start the server development
 
-## License
+```bash
+  npm run dev
+```
 
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+Build project
+
+```bash
+  npm run build
+```
+
+
+## 🔗 Documentation
+[![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://documenter.getpostman.com/view/34122341/2sA3XQh2Rt)
+
+
+## Database Diagram
+
+![Diagram](https://res.cloudinary.com/dxoncladp/image/upload/v1718436659/Untitled_ej3xcc.png)
+
