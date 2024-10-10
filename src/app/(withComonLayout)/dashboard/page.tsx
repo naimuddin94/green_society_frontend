@@ -22,7 +22,7 @@ const PostPage = async () => {
       <AddPost />
       <div>
         {data.data.result.map((post: IPost) => (
-          <PostCard post={post} />
+          <PostCard post={post} key={post._id} />
         ))}
       </div>
     </div>

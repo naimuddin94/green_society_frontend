@@ -27,7 +27,7 @@ const MyPostPage = async () => {
     <div className="container px-5">
       <div>
         {data.data.result.map((post: IPost) => (
-          <PostCard post={post} />
+          <PostCard post={post} key={post._id} />
         ))}
       </div>
     </div>
