@@ -53,7 +53,7 @@ const PostCard = ({ post }: IPostCardProps) => {
 
     if (contentEl) {
       const options = {
-        margin: 1,
+        margin: 0.2,
         filename: `${post.author.name + "'s_post"}.pdf`,
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true },

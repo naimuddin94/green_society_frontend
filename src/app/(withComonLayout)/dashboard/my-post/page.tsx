@@ -8,7 +8,7 @@ const MyPostPage = async () => {
   const user = await getCurrentUser();
 
   if (!user) {
-    return redirect("/signin?redirect=post/my-post");
+    return redirect("/signin?redirect=dashboard/my-post");
   }
 
   const res = await fetch(`${envConfig.api_host}/posts?author=${user?._id}`, {

@@ -7,6 +7,7 @@ import {
   addPostReaction,
   deleteComment,
   deletePost,
+  makePremium,
 } from "../services/Post.service";
 
 // AddPost Hook
@@ -109,6 +110,26 @@ export const usePostReaction = () => {
       // Correctly invalidate the specific post's reactions
       queryClient.refetchQueries({
         queryKey: ["posts", variables.postId],
+        type: "active",
+      });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+// Make premium
+export const usePostPremium = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation<any, Error, string>({
+    mutationKey: ["makePremium"],
+    mutationFn: async (postId) => await makePremium(postId),
+    onSuccess: (data, variables) => {
+      // Correctly invalidate the specific post's reactions
+      queryClient.refetchQueries({
+        queryKey: ["posts", variables],
         type: "active",
       });
     },

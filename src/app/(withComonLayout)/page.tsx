@@ -1,43 +1,33 @@
-import { GithubIcon } from "@/src/components/icons";
 import { subtitle, title } from "@/src/components/primitives";
-import { siteConfig } from "@/src/config/site";
-import { Link } from "@nextui-org/link";
-import { button as buttonStyles } from "@nextui-org/theme";
+import Link from "next/link";
 
 export default async function Home() {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+    <section
+      className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 bg-cover bg-center"
+      style={{ backgroundImage: 'url("/path-to-your-garden-bg-image.jpg")' }}
+    >
       <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
+        <span className={title()}>Grow&nbsp;</span>
+        <span className={title({ color: "green" })}>your dream&nbsp;</span>
         <br />
         <span className={title()}>
-          websites regardless of your design experience.
+          garden with <span className={title({ color: "green" })}>expert </span>
+          tips and <span className={title({ color: "green" })}>community </span>
+          support.
         </span>
         <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
+          Join a thriving community of gardening enthusiasts, access premium
+          content, and share your passion for nature.
         </div>
       </div>
 
       <div className="flex gap-3">
         <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
+          href="/dashboard"
+          className="bg-green-600 px-8 py-3 rounded-full no-underline text-white hover:brightness-90"
         >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
+          Get Started
         </Link>
       </div>
     </section>

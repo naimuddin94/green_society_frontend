@@ -4,7 +4,6 @@ import AddPost from "./_components/AddPost";
 import PostCard from "./_components/PostCard";
 
 const PostPage = async () => {
-  // const { data } = await axiosInstance.get("/posts");
 
   const res = await fetch(`${envConfig.api_host}/posts`, {
     next: {

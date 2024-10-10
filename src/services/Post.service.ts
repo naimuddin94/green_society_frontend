@@ -72,3 +72,16 @@ export const addPostReaction = async (postData: FieldValues) => {
     throw new Error(error);
   }
 };
+
+export const makePremium = async (postId: string) => {
+  try {
+    const { data } = await axiosInstance.patch(`/posts/premium/${postId}`);
+    if (data?.success) {
+      revalidateTag(`post-${postId}`);
+    }
+    return data;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
+  }
+};

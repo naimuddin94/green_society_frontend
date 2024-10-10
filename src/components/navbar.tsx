@@ -2,7 +2,6 @@
 
 import { Logo, SearchIcon } from "@/src/components/icons";
 import { ThemeSwitch } from "@/src/components/theme-switch";
-import { siteConfig } from "@/src/config/site";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import {
@@ -18,6 +17,7 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import { default as Link, default as NextLink } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { siteConfig } from "../config/site";
 import { useUser } from "../context/user.provider";
 import NavbarDropdown from "./NavbarDropdown";
 
@@ -47,7 +47,10 @@ export const Navbar = () => {
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1 text-current no-underline" href="/">
+          <NextLink
+            className="flex justify-start items-center gap-1 text-current no-underline"
+            href="/"
+          >
             <Logo />
             <p className="font-bold text-inherit text-lg">Green Society</p>
           </NextLink>
@@ -100,10 +103,10 @@ export const Navbar = () => {
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                className={`${pathname === item.href && "text-primary"}`}
-                href={item.href}
+                className={`${pathname === item?.href && "text-primary"}`}
+                href={item?.href || "#"}
               >
-                {item.label}
+                {item?.label}
               </Link>
             </NavbarMenuItem>
           ))}
