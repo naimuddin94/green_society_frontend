@@ -1,8 +1,15 @@
 "use client";
 
-import { Book, Cog, House, LucideProps, NotebookTabs, UserRound } from "lucide-react";
+import { siteConfig } from "@/src/config/site";
+import { useUser } from "@/src/context/user.provider";
+import { LucideProps } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import {
+  ForwardRefExoticComponent,
+  RefAttributes,
+  useEffect,
+  useState,
+} from "react";
 
 interface IItem {
   name: string;
@@ -13,16 +20,17 @@ interface IItem {
 }
 
 const Sidebar = () => {
+  const [sideMenus, setSideMenus] = useState<IItem[] | []>([]);
   const router = useRouter();
   const pathname = usePathname();
 
-  const menuItems = [
-    { name: "All", icon: House, route: "/post" },
-    { name: "Gardening Tips", icon: Book, route: "/post/tips" },
-    { name: "Community", icon: UserRound, route: "/post/community" },
-    { name: "My Post", icon: NotebookTabs, route: "/post/my-post" },
-    { name: "Settings", icon: Cog, route: "/settings" },
-  ];
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user && user.role === "admin") {
+      setSideMenus(siteConfig.adminSidebarItems);
+    } else setSideMenus(siteConfig.userSidebarItems);
+  }, [user]);
 
   const handleClick = (item: IItem) => {
     router.push(item.route);
@@ -32,7 +40,7 @@ const Sidebar = () => {
     <div className="min-w-64 dark:bg-gradient-to-br dark:from-green-950 dark:to-teal-800 bg-slate-200 dark:text-white md:flex flex-col hidden fixed h-full w-64">
       <nav className="flex-grow">
         <ul className="mt-6">
-          {menuItems.map((item) => (
+          {sideMenus.map((item) => (
             <li
               key={item.name}
               className={`flex items-center px-4 py-3 dark:hover:bg-gradient-to-r dark:hover:from-green-950 dark:hover:to-teal-800 hover:bg-slate-300 cursor-pointer ${
