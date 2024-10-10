@@ -41,7 +41,6 @@ const SigninForm = () => {
       <GSForm
         resolver={zodResolver(signinValidationSchema)}
         className="flex flex-col gap-4"
-        defaultValues={{ email: "admin@gmail.com", password: "password123" }}
         onSubmit={handleLogin}
       >
         <GSInput required label="Email" name="email" />

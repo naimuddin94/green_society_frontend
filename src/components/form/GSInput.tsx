@@ -14,8 +14,6 @@ export default function GSInput({
   type = "text",
   label,
   name,
-  placeholder,
-  endContent,
 }: IProps) {
   const {
     register,
@@ -28,12 +26,10 @@ export default function GSInput({
       errorMessage={errors[name] ? (errors[name].message as string) : ""}
       isInvalid={!!errors[name]}
       label={label}
-      placeholder={placeholder}
       isRequired={required}
       size={size}
       type={type}
       variant={variant}
-      endContent={endContent}
     />
   );
 }
