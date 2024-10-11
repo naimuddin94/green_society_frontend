@@ -14,13 +14,14 @@ import { useUser } from "@/src/context/user.provider";
 import { useUserSignup } from "@/src/hooks/auth.hook";
 
 const SignupForm = () => {
+  const searchParams = useSearchParams();
   const [isVisible, setIsVisible] = useState(false);
   const [image, setImage] = useState<File | null>(null);
-  const searchParams = useSearchParams();
   const router = useRouter();
   const { setIsLoading: userLoading } = useUser();
 
-  const redirect = searchParams.get("redirect");
+  const redirect =
+    typeof window !== "undefined" ? searchParams.get("redirect") : null;
 
   const { mutate: signupFn, isPending, isSuccess } = useUserSignup();
 
