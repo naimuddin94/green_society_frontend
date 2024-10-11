@@ -13,6 +13,7 @@ export default function GADatePicker({
   return (
     <Controller
       name={name}
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       render={({ field: { value, ...fields } }) => (
         <DatePicker
           className="min-w-full sm:min-w-[225px]"

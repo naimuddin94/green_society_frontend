@@ -1,16 +1,17 @@
 "use client";
 
-import { siteConfig } from "@/src/config/site";
-import { useUser } from "@/src/context/user.provider";
 import { LucideProps } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   ForwardRefExoticComponent,
   RefAttributes,
   useEffect,
   useState,
 } from "react";
+
+import { siteConfig } from "@/src/config/site";
+import { useUser } from "@/src/context/user.provider";
 
 interface IItem {
   name: string;
@@ -22,7 +23,6 @@ interface IItem {
 
 const Sidebar = () => {
   const [sideMenus, setSideMenus] = useState<IItem[] | []>([]);
-  const router = useRouter();
   const pathname = usePathname();
 
   const { user } = useUser();
@@ -33,13 +33,16 @@ const Sidebar = () => {
     } else setSideMenus(siteConfig.userSidebarItems);
   }, [user]);
 
-
   return (
     <div className="min-w-64 dark:bg-gradient-to-br dark:from-green-950 dark:to-teal-800 bg-slate-200 dark:text-white md:flex flex-col hidden fixed h-full w-64">
       <nav className="flex-grow">
         <ul className="mt-6">
           {sideMenus.map((item) => (
-            <Link href={item.route} key={item.name} className="no-underline text-current">
+            <Link
+              key={item.name}
+              className="no-underline text-current"
+              href={item.route}
+            >
               <li
                 className={`flex items-center px-4 py-3 dark:hover:bg-gradient-to-r dark:hover:from-green-950 dark:hover:to-teal-800 hover:bg-slate-300 cursor-pointer ${
                   pathname === item.route

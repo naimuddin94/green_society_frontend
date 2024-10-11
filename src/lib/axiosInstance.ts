@@ -1,5 +1,6 @@
 import axios from "axios";
 import { cookies } from "next/headers";
+
 import { envConfig } from "../config/envConfig";
 
 const axiosInstance = axios.create({
@@ -26,7 +27,7 @@ axiosInstance.interceptors.request.use(
   },
   function (error) {
     return Promise.reject(error);
-  }
+  },
 );
 
 axiosInstance.interceptors.response.use(function (response) {

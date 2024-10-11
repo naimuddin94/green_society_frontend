@@ -1,5 +1,11 @@
 "use client";
 
+import { Button } from "@nextui-org/button";
+import { useDisclosure } from "@nextui-org/modal"; // Import useDisclosure
+import { DiamondPlus } from "lucide-react";
+import { ChangeEvent, useState } from "react";
+import { FieldValues } from "react-hook-form";
+
 import GSFileInput from "@/src/components/form/GSFileInput";
 import GSForm from "@/src/components/form/GSForm";
 import GSSelect from "@/src/components/form/GSSelect";
@@ -8,11 +14,6 @@ import GSModal from "@/src/components/ui/GSModal";
 import Loading from "@/src/components/ui/Loading";
 import { postCategory } from "@/src/constant/intex";
 import { useAddPost } from "@/src/hooks/post.hook";
-import { Button } from "@nextui-org/button";
-import { useDisclosure } from "@nextui-org/modal"; // Import useDisclosure
-import { DiamondPlus } from "lucide-react";
-import { ChangeEvent, useState } from "react";
-import { FieldValues } from "react-hook-form";
 
 const AddPost = () => {
   const [images, setImages] = useState<File[] | null>(null);
@@ -46,6 +47,7 @@ const AddPost = () => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
+
     if (files) {
       setImages(Array.from(files));
     }
@@ -55,21 +57,21 @@ const AddPost = () => {
     <>
       {isPending && <Loading />}
       <div className="flex justify-end sticky top-16 z-10">
-        <Button onPress={onOpen} variant="solid" startContent={<DiamondPlus />}>
+        <Button startContent={<DiamondPlus />} variant="solid" onPress={onOpen}>
           Add Post
         </Button>
         <GSModal
           isOpen={isOpen}
-          onOpenChange={onOpenChange}
           title="Add new post"
+          onOpenChange={onOpenChange}
         >
-          <GSForm onSubmit={handleAddPost} className="space-y-4">
+          <GSForm className="space-y-4" onSubmit={handleAddPost}>
             <div className="md:flex items-center justify-center gap-2 md:space-y-[2px] space-y-3">
               <div className="flex-1">
                 <GSFileInput
-                  onChange={handleImageChange}
-                  value={images && `${images.length} images selected`}
                   multiple
+                  value={images && `${images.length} images selected`}
+                  onChange={handleImageChange}
                 />
               </div>
               <div className="flex-1 -mt-4">

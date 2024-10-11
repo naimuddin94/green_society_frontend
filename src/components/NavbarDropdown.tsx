@@ -8,9 +8,11 @@ import {
   DropdownTrigger,
 } from "@nextui-org/dropdown";
 import { usePathname, useRouter } from "next/navigation";
+
+import { protectedRoutes } from "../utils/constant";
+
 import { useUser } from "@/src/context/user.provider";
 import { signout } from "@/src/services/AuthService";
-import { protectedRoutes } from "../utils/constant";
 
 export default function NavbarDropdown() {
   const router = useRouter();

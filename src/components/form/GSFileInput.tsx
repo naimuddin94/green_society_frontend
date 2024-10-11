@@ -15,10 +15,12 @@ const GSFileInput = ({ onChange, multiple, value }: IProps) => {
     const valueArray = value.split(".");
     const fileExtension = valueArray.pop();
     const fileName = valueArray.join(".");
+
     displayValue = `${fileName.slice(0, 30)}....${fileExtension}`;
   } else if (value) {
     displayValue = value;
   }
+
   return (
     <div className="min-w-fit flex-1">
       <label
@@ -28,9 +30,9 @@ const GSFileInput = ({ onChange, multiple, value }: IProps) => {
         {displayValue}
       </label>
       <input
-        multiple={multiple}
         className="hidden"
         id="image"
+        multiple={multiple}
         type="file"
         onChange={(e) => onChange(e)}
       />

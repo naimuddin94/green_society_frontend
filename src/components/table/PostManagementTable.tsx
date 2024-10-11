@@ -1,8 +1,5 @@
 "use client";
 
-import { usePostPremium } from "@/src/hooks/post.hook";
-import { IPost } from "@/src/types";
-import { extractH1Content } from "@/src/utils";
 import { Checkbox } from "@nextui-org/checkbox";
 import {
   Table,
@@ -12,8 +9,13 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/table";
+
 import DeleteModal from "../ui/DeleteModal";
 import Loading from "../ui/Loading";
+
+import { usePostPremium } from "@/src/hooks/post.hook";
+import { IPost } from "@/src/types";
+import { extractH1Content } from "@/src/utils";
 
 interface PostManagementTableProps {
   posts: IPost[];
@@ -21,9 +23,6 @@ interface PostManagementTableProps {
 
 const PostManagementTable = ({ posts }: PostManagementTableProps) => {
   const { mutate: makePremiumFn, isPending } = usePostPremium();
-  const handleDelete = (id: string) => {
-    console.log("delete", id);
-  };
 
   const handleMakePremium = (id: string) => {
     makePremiumFn(id);
@@ -52,7 +51,7 @@ const PostManagementTable = ({ posts }: PostManagementTableProps) => {
                 <Checkbox
                   isSelected={post.premium}
                   onChange={() => handleMakePremium(post._id)}
-                ></Checkbox>
+                />
               </TableCell>
               <TableCell className="space-x-2">
                 <DeleteModal postId={post._id} />

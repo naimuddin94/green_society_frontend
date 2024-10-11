@@ -12,10 +12,7 @@ export default function GSTextarea({
   label,
   variant = "bordered",
 }: IProps) {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+  const { register } = useFormContext();
 
   const currentValue = useWatch({ name });
 

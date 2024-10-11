@@ -1,16 +1,17 @@
 "use client";
 
+import { Button } from "@nextui-org/button";
+import { Eye, EyeOff } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ChangeEvent, useEffect, useState } from "react";
+import { FieldValues } from "react-hook-form";
+
 import GSFileInput from "@/src/components/form/GSFileInput";
 import GSForm from "@/src/components/form/GSForm";
 import GSInput from "@/src/components/form/GSInput";
 import Loading from "@/src/components/ui/Loading";
 import { useUser } from "@/src/context/user.provider";
 import { useUserSignup } from "@/src/hooks/auth.hook";
-import { Button } from "@nextui-org/button";
-import { Eye, EyeOff } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { ChangeEvent, useEffect, useState } from "react";
-import { FieldValues } from "react-hook-form";
 
 const SignupForm = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,6 +26,7 @@ const SignupForm = () => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files![0];
+
     setImage(file);
   };
 
@@ -59,17 +61,17 @@ const SignupForm = () => {
     <>
       {isPending && <Loading />}
       <GSForm className="flex flex-col gap-4" onSubmit={handleLogin}>
-        <GSFileInput onChange={handleImageChange} value={image && image.name} />
+        <GSFileInput value={image && image.name} onChange={handleImageChange} />
         <GSInput required label="Name" name="name" />
         <GSInput required label="Email" name="email" />
         <GSInput
           required
           endContent={
             <button
+              aria-label="toggle password visibility"
               className="focus:outline-none"
               type="button"
               onClick={() => setIsVisible(!isVisible)}
-              aria-label="toggle password visibility"
             >
               {isVisible ? (
                 <EyeOff className="text-2xl text-default-400 pointer-events-none" />
@@ -78,9 +80,9 @@ const SignupForm = () => {
               )}
             </button>
           }
-          type={isVisible ? "text" : "password"}
           label="Password"
           name="password"
+          type={isVisible ? "text" : "password"}
         />
         <GSInput label="Phone" name="phone" />
         <GSInput label="Address" name="address" />

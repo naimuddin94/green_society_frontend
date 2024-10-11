@@ -1,5 +1,6 @@
-import axiosInstance from "@/src/lib/axiosInstance";
 import PostCard from "../_components/PostCard";
+
+import axiosInstance from "@/src/lib/axiosInstance";
 
 interface IProps {
   params: { postId: string };

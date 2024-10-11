@@ -1,4 +1,13 @@
-import { Book, CircleDollarSign, Cog, House, NotebookTabs, Package, ShieldCheck, UserRound } from "lucide-react";
+import {
+  Book,
+  CircleDollarSign,
+  Cog,
+  House,
+  NotebookTabs,
+  Package,
+  ShieldCheck,
+  UserRound,
+} from "lucide-react";
 
 export type SiteConfig = typeof siteConfig;
 

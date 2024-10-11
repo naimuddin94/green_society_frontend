@@ -1,8 +1,10 @@
+import { redirect } from "next/navigation";
+
+import PostCard from "../_components/PostCard";
+
 import { envConfig } from "@/src/config/envConfig";
 import { getCurrentUser } from "@/src/services/AuthService";
 import { IPost } from "@/src/types";
-import { redirect } from "next/navigation";
-import PostCard from "../_components/PostCard";
 
 const MyPostPage = async () => {
   const user = await getCurrentUser();
@@ -27,7 +29,7 @@ const MyPostPage = async () => {
     <div className="container px-5">
       <div>
         {data.data.result.map((post: IPost) => (
-          <PostCard post={post} key={post._id} />
+          <PostCard key={post._id} post={post} />
         ))}
       </div>
     </div>

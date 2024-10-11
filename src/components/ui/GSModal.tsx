@@ -16,14 +16,14 @@ export default function GSModal({
 }: IProps) {
   return (
     <Modal
+      backdrop="blur"
+      className="py-5"
       isOpen={isOpen}
       size="3xl"
       onOpenChange={onOpenChange}
-      className="py-5"
-      backdrop="blur"
     >
       <ModalContent className="max-h-[100vh] overflow-y-auto scrollbar-hide">
-        {(onClose) => (
+        {() => (
           <>
             <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
             <ModalBody>{children}</ModalBody>

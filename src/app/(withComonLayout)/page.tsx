@@ -1,5 +1,6 @@
-import { subtitle, title } from "@/src/components/primitives";
 import Link from "next/link";
+
+import { subtitle, title } from "@/src/components/primitives";
 
 export default async function Home() {
   return (
@@ -24,8 +25,8 @@ export default async function Home() {
 
       <div className="flex gap-3">
         <Link
-          href="/dashboard"
           className="bg-green-600 px-8 py-3 rounded-full no-underline text-white hover:brightness-90"
+          href="/dashboard"
         >
           Get Started
         </Link>

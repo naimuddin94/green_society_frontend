@@ -17,10 +17,7 @@ export default function GSSelect({
   variant = "bordered",
   disabled,
 }: IProps) {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+  const { register } = useFormContext();
 
   return (
     <Select

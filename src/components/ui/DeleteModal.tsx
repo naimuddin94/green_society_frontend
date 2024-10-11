@@ -1,6 +1,5 @@
 "use client";
 
-import { useDeletePost } from "@/src/hooks/post.hook";
 import { Button } from "@nextui-org/button";
 import {
   Modal,
@@ -11,6 +10,8 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 import { Trash2 } from "lucide-react";
+
+import { useDeletePost } from "@/src/hooks/post.hook";
 
 interface IProps {
   postId: string;
@@ -31,7 +32,7 @@ export default function DeleteModal({ postId }: IProps) {
       <Button isIconOnly onPress={onOpen}>
         <Trash2 className="hover:text-rose-500" />
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
+      <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>

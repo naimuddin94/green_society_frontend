@@ -25,8 +25,8 @@ export default function GSInput({
       {...register(name)}
       errorMessage={errors[name] ? (errors[name]?.message as string) : ""}
       isInvalid={!!errors[name]}
-      label={label}
       isRequired={required}
+      label={label}
       size={size}
       type={type}
       variant={variant}

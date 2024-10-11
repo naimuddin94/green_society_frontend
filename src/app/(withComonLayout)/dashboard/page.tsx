@@ -1,10 +1,10 @@
-import { envConfig } from "@/src/config/envConfig";
-import { IPost } from "@/src/types";
 import AddPost from "./_components/AddPost";
 import PostCard from "./_components/PostCard";
 
-const PostPage = async () => {
+import { envConfig } from "@/src/config/envConfig";
+import { IPost } from "@/src/types";
 
+const PostPage = async () => {
   const res = await fetch(`${envConfig.api_host}/posts`, {
     next: {
       tags: ["posts"],
@@ -22,7 +22,7 @@ const PostPage = async () => {
       <AddPost />
       <div>
         {data.data.result.map((post: IPost) => (
-          <PostCard post={post} key={post._id} />
+          <PostCard key={post._id} post={post} />
         ))}
       </div>
     </div>
